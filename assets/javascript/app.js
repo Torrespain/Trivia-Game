@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 var dataStructure=[
 	{
 		question: "Which of this animals is an amphibian: ",
@@ -20,6 +19,13 @@ var wins=0;
 var looses=0;
 var counter=0;
 
+
+function welcome(){
+	$(".welcomeMessage").html("<h1>Welcome!<br>Please press me to start the game</h1>")
+}
+
+welcome();
+
 function start(){
 	timerRunning=setInterval(crono,1000);
 	dataSend();
@@ -38,11 +44,13 @@ function crono(){
 function win(){
 	wins++;
 	counter++;
+	start();
 }
 
 function loose(){
-	looses--;
+	looses++;
 	counter++;
+	start();
 }
 
 function clearScreen(){
@@ -52,17 +60,38 @@ function clearScreen(){
 
 function dataSend(){
 	//Sending the time left
-	$(".timeLeft").text(timeLeft);
+	$(".timeLeft").html(timeLeft);
 	//Sending the question
 	$(".question").append(dataStructure[counter].question);
 
 	//This loop is going to send the choices
 	for (var i = 0; i < dataStructure[counter].choices.length; i++) {
-		$(".choices").append(dataStructure[counter].choices[i]+"<br>");
+		$(".choices").append("<p value="+i+">"+dataStructure[counter].choices[i]+"</p>");
+	}
+}
+
+$(".welcomeMessage").on("click",function(){
+	$(".welcomeMessage").empty();
+	start();
+});
+
+$(".choices").on("click","p",function(){
+
+	if ($(this).attr("value")===dataStructure[counter].answer) {
+		console.log($(this).attr("value"))
+
+		alert("yes!")
+	}
+	else{
+		console.log($(this).attr("value"))
+		console.log(dataStructure[counter].answer)
+		
+		alert("no!")
 	}
 
+});
 
-}
+
 
  
 // 
