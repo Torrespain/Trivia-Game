@@ -4,13 +4,24 @@ var dataStructure=[
 	{
 		question: "Which of this animals is an amphibian: ",
 		choices: ["A turtle","A frog","A snake","An iguana"],
-		answer: "1"
+		answer: "1",
+		picture: "<img src='assets/images/frog.jpg' width='500' height='400'>",
+		response:"The correct answer is: Frog"
 	},
 	{
-		question: "Which of this animals is an amphibian: ",
-		choices: ["A turtle","A frog","A snake","An iguana"],
-		answer: "1"
+		question: "What kind of fish is Nemo from the movie Finding Nemo? ",
+		choices: ["A Blue Tang fish","A Moorish idol","A Clownfish","a Patrick Star"],
+		answer: "2",
+		picture: "<img src='assets/images/clownfish.jpg' width='550' height='400'>",
+		response:"The correct answer is: Clownfish"
 	},
+	{
+		question: "Which is the only insect that knows Kung Fu?",
+		choices: ["The Praying Mantis","The Jumping Spider","The Kung Fu Panda","The Asian Giant Hornet"],
+		answer: "0",
+		picture: "<img src='assets/images/mantis.jpg' width='550' height='400'>",
+		response:"The correct answer is: The Praying Mantis"
+	},	
 ];
 
 var timeLeft=15;
@@ -35,22 +46,24 @@ function crono(){
 	if (timeLeft>0) {
 		timeLeft--;
 		$(".timeLeft").text(timeLeft);
+
 	}
 	else {
-		clearTimeout(timerRunning);
+		clearInterval(timerRunning);
+		loose();
 	}		
 }
 
 function win(){
 	wins++;
-	counter++;
-	start();
+	clearTimeout(timerRunning);
+	timeLeft=15;
 }
 
 function loose(){
 	looses++;
-	counter++;
-	start();
+	clearTimeout(timerRunning);
+	timeLeft=15;
 }
 
 function clearScreen(){
@@ -70,26 +83,51 @@ function dataSend(){
 	}
 }
 
+function result(){
+	$(".result").html("<p>"+dataStructure[counter].response+"</p>");
+	$(".result").append(dataStructure[counter].picture);
+	$(".result").append("<p>Click on the image to continue!</p>");
+	$(".question").empty();
+	$(".choices").empty();
+	$(".timeLeft").empty();
+	clearTimeout(timerRunning);
+	counter++;
+
+}
+
+// On click functions:
+
 $(".welcomeMessage").on("click",function(){
 	$(".welcomeMessage").empty();
 	start();
 });
 
+
 $(".choices").on("click","p",function(){
 
 	if ($(this).attr("value")===dataStructure[counter].answer) {
 		console.log($(this).attr("value"))
-
+		win();
+		$(".choices").empty();
 		alert("yes!")
+		result()
+
 	}
 	else{
 		console.log($(this).attr("value"))
 		console.log(dataStructure[counter].answer)
-		
+		$(".choices").empty();
 		alert("no!")
 	}
 
 });
+
+$(".result").on("click", function(){
+	$(".result").empty();
+	start();
+});
+
+
 
 
 
