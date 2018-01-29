@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 var dataStructure=[
 	{
-		question: "Which of this animals is an amphibian: ",
+		question: "Which of these animals is an amphibian: ",
 		choices: ["A turtle","A frog","A snake","An iguana"],
 		answer: "1",
 		picture: "<img src='assets/images/frog.jpg' width='500' height='400'>",
@@ -22,6 +22,7 @@ var dataStructure=[
 		picture: "<img src='assets/images/mantis.jpg' width='550' height='400'>",
 		response:"The correct answer is: The Praying Mantis"
 	},	
+
 ];
 
 var timeLeft=15;
@@ -51,6 +52,7 @@ function crono(){
 	else {
 		clearInterval(timerRunning);
 		loose();
+		result();
 	}		
 }
 
@@ -92,7 +94,18 @@ function result(){
 	$(".timeLeft").empty();
 	clearTimeout(timerRunning);
 	counter++;
+}
 
+function gameOver (){
+	$(".gameOver").html("<div class='finalScore'>Your Final Score is: " + ((wins/(counter))*100)+"% </div>" )
+	if(wins>looses){
+		$(".gameOver").append("<div>Great Job!</div>")
+	}
+	if(wins<=looses){
+		$(".gameOver").append("<div>Keep trying!</div>")
+	}
+
+	$(".gameOver").append("<div>Game Over</div>")
 }
 
 // On click functions:
@@ -108,7 +121,6 @@ $(".choices").on("click","p",function(){
 	if ($(this).attr("value")===dataStructure[counter].answer) {
 		console.log($(this).attr("value"))
 		win();
-		$(".choices").empty();
 		alert("yes!")
 		result()
 
@@ -116,15 +128,22 @@ $(".choices").on("click","p",function(){
 	else{
 		console.log($(this).attr("value"))
 		console.log(dataStructure[counter].answer)
-		$(".choices").empty();
+		loose();
 		alert("no!")
+		result()
 	}
 
 });
 
 $(".result").on("click", function(){
-	$(".result").empty();
-	start();
+	if(counter===3){
+		$(".result").empty();
+		gameOver();
+	}
+	else{
+		$(".result").empty();
+		start();
+	}
 });
 
 
