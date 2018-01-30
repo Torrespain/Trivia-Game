@@ -10,7 +10,7 @@ var dataStructure=[ //This is the array of objects with all the information
 		question: "Which of these animals is an amphibian: ",
 		choices: ["A turtle","A frog","A snake","An iguana"],
 		answer: "1",
-		picture: "<img src='assets/images/frog.jpg' width='500' height='400'>",
+		picture: "<img src='assets/images/frog1.jpg' width='500' height='400'>",
 		response:"The correct answer is: Frog"
 	},
 	{
