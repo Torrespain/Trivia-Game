@@ -1,0 +1,66 @@
+body{
+ background-image: url(../images/background.jpg);
+ background-size:  cover;
+ background-repeat: no-repeat;
+}
+#main {
+	font-size: 18px;
+	background:rgba(255,255,255,0.5);
+	text-align: center;	
+	padding: 15px;
+	font-family: 'Comfortaa', cursive;
+	margin-bottom: 30px;
+}
+.welcomeMessage{
+	line-height: 150%;
+	position: relative;
+	bottom: -25px;
+}
+.page-header{
+	text-align: center;
+	opacity: 0.7;
+	background:rgb(0, 153, 255); 
+    border-color: blue;
+    border-width: 1px;
+    border-style: solid;
+    color: white;
+}
+.welcomeMessage{
+	padding-top: 20px;
+	 line-height: 1.6px;
+}
+.timeLeft{
+	color: red;
+	font-size: 22px;
+}
+.answer{
+	padding: 10px;
+	font-weight: bold;
+	font-size: 30px;
+}
+.button{
+	padding: 15px;
+	text-align: center;
+}
+.button:hover {
+    opacity: 0.7;
+	background:rgb(179, 224, 255); 
+    border-color: blue;
+    border-width: 2px;
+    border-style: solid;
+}
+.question{
+	padding: 15px;
+	font-weight: bold;
+	font-size: 22px;
+}
+.choices{
+text-align: center;	
+}
+.gameOver{
+	padding: 15px;
+	padding-bottom: 50px;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 250%;
+}
