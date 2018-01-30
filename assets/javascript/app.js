@@ -10,7 +10,7 @@ var dataStructure=[ //This is the array of objects with all the information
 		question: "Which of these animals is an amphibian: ",
 		choices: ["A turtle","A frog","A snake","An iguana"],
 		answer: "1",
-		picture: "<img src='https://image.ibb.co/nf7XPR/frog.jpg' width='500' height='400'>",
+		picture: "<img src='assets/images/frog1.jpg' width='500' height='400'>",
 		response:"The correct answer is: Frog"
 	},
 	{
@@ -47,7 +47,7 @@ function start(){	//This function will start the interval for the time left and 
 
 function crono(){		//Function for the 15s that the player has to answer
 	if (timeLeft>0) {
-		timeLeft--;https://image.ibb.co/nf7XPR/frog.jpg
+		timeLeft--;
 		$(".timeLeft").text("Time remaining: "+timeLeft+" seconds");
 	}
 	else {
